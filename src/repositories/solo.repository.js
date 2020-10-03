@@ -12,7 +12,7 @@ exports.get = async() =>{
        return res;
 };
 
-exports.diferenca = async(hexa1,hexa2) =>{
+exports.diferenca = async(hexa1) =>{
 
   function calcula(hexa1,hexa2){
 
@@ -48,14 +48,14 @@ exports.diferenca = async(hexa1,hexa2) =>{
          
               const resposta = calcula(hexa1,item.hexa);
               
-              if(resposta <= 30){
+              if(resposta <= 45){
  
                  retorno.push(item);
-                  console.log(retorno);
+               
                
               }
               else{
-                console.log(resposta);
+               
               }
              
                                      

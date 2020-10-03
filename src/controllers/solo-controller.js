@@ -72,7 +72,7 @@ exports.delete = async(req,res,nex) =>{
 
 exports.diferenca = async(req,res,nex) =>{
   try {
-    var data = await repository.diferenca(req.body.hexa1,req.body.hexa2);
+    var data = await repository.diferenca(req.body.hexa1);
     res.status(200).send(data);
   } catch (e) {
     res.status(200).send({

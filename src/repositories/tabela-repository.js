@@ -11,12 +11,7 @@ exports.get = async() =>{
 };
 
 
-exports.getCompara = async(hexa1) =>{
-    const res =  await Tabela.find({
-       },'hexa descricao mineral formula Munsell nomecor');
 
-       return res;
-};
 
 exports.create = async(data) =>{
 
