@@ -5,7 +5,14 @@ const Tabela = mongoose.model('Tabela');
 
 exports.get = async() =>{
     const res =  await Tabela.find({
-        active:true
+       },'hexa descricao mineral formula Munsell nomecor');
+
+       return res;
+};
+
+
+exports.getCompara = async(hexa1) =>{
+    const res =  await Tabela.find({
        },'hexa descricao mineral formula Munsell nomecor');
 
        return res;

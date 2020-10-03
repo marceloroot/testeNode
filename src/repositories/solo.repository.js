@@ -1,5 +1,6 @@
 'use strict'
 const mongoose =require('mongoose');
+const repository = require("../repositories/tabela-repository");
 const solo = require('../models/solo');
 const Solo = mongoose.model('Solo');
 
@@ -13,6 +14,8 @@ exports.get = async() =>{
 
 exports.diferenca = async(hexa1,hexa2) =>{
 
+  function calcula(hexa1,hexa2){
+
     const hexToRgb = hex =>
     hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
                ,(m, r, g, b) => '#' + r + r + g + g + b + b)
@@ -23,18 +26,9 @@ exports.diferenca = async(hexa1,hexa2) =>{
     
       const rgb1 = hexToRgb(hexa1);
       const rgb2 = hexToRgb(hexa2);
-      
-     
-    
-     
-      
-      
-       
-        const [ r1, g1, b1 ] = rgb1;
-        const  [ r2, g2, b2 ] = rgb2;
-
-       
-           
+        
+          const [ r1, g1, b1 ] = rgb1;
+          const  [ r2, g2, b2 ] = rgb2;
           const drp2 = Math.pow((r1 - r2), 2);
           const dgp2 = Math.pow((g1 - g2), 2);
           const dbp2 = Math.pow((b1 - b2), 2);
@@ -42,14 +36,39 @@ exports.diferenca = async(hexa1,hexa2) =>{
            
        
            const resposta = Math.sqrt(2 * drp2 + 4 * dgp2 + 3 * dbp2 + t * (drp2 - dbp2) / 256)
-         // console.log(resposta);
-           return String(resposta);
-       
-    
+          //console.log(resposta);
+           //return String(resposta);
+            return resposta;
+          }
 
-
-  //console.log(hexToRgb("#0033ff")) // [0, 51, 255]
- // console.log(hexToRgb("#03f")) // [0, 51, 255]
+            var data = await repository.get();
+            var retorno =[];
+            
+            data.forEach((item)=>{
+         
+              const resposta = calcula(hexa1,item.hexa);
+              
+              if(resposta <= 30){
+ 
+                 retorno.push(item);
+                  console.log(retorno);
+               
+              }
+              else{
+                console.log(resposta);
+              }
+             
+                                     
+             });
+             if(retorno.length >0){
+               return retorno;
+             }else{
+               return {"message":"Nada encontrado"};
+             }
+           
+          
+          
+          
 
 
 };
