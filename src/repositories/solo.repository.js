@@ -14,7 +14,9 @@ exports.get = async() =>{
 
 exports.diferenca = async(hexa1) =>{
 
-  function calcula(hexa1,hexa2){
+ const tte = `#${hexa1}`;
+ console.log(tte);
+  function calcula(tte,hexa2){
 
     const hexToRgb = hex =>
     hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
@@ -24,7 +26,7 @@ exports.diferenca = async(hexa1) =>{
   
 
     
-      const rgb1 = hexToRgb(hexa1);
+      const rgb1 = hexToRgb(tte);
       const rgb2 = hexToRgb(hexa2);
         
           const [ r1, g1, b1 ] = rgb1;
@@ -46,7 +48,7 @@ exports.diferenca = async(hexa1) =>{
             
             data.forEach((item)=>{
          
-              const resposta = calcula(hexa1,item.hexa);
+              const resposta = calcula(tte,item.hexa);
               
               if(resposta <= 45){
  
